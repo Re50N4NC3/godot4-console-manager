@@ -33,6 +33,7 @@ var commands: Dictionary = {}
 func _ready() -> void:
 	text_submitted.connect(_on_text_submitted)
 	keep_editing_on_text_submit = true  # Required for 4.4
+	canvas.set_visible(initially_visible)
 	if initially_visible:
 		grab_focus()
 
