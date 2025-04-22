@@ -10,4 +10,5 @@ func _register_commands() -> void:
 func _cmd_change_cam_speed(args: Array[String]) -> void:
 	# Extract arguments from input
 	var multiplier_new_value: float = float(args[0])
+	console_manager.log_debug("Speed change requested")
 	test_camera.set_speed_multiplier(multiplier_new_value)

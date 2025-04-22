@@ -37,6 +37,8 @@ func _ready() -> void:
 	if initially_visible:
 		grab_focus()
 
+	console_manager.set_console(self)
+
 	# Built-in commands
 	register_command("help", _cmd_help, "Shows all available commands")
 	register_command("clear", _cmd_clear, "Clears the console log")
