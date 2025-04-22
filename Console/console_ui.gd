@@ -4,9 +4,6 @@ class_name ConsoleUi
 @export var console_log: RichTextLabel
 @export var console_input: Console
 
-@export_category("Console UI settings")
-@export var pause_on_open: bool = false
-
 func _ready() -> void:
 	console_input.log_display = console_log
 	console_input.command_executed.connect(_on_command_executed)
@@ -20,5 +17,3 @@ func _input(event: InputEvent) -> void:
 			visible = !visible
 			if visible:
 				console_input.edit()
-			if pause_on_open:
-				get_tree().paused = visible

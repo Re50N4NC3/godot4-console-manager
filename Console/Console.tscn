@@ -45,6 +45,7 @@ autowrap_mode = 0
 
 [node name="ConsoleInput" type="LineEdit" parent="PanelContainer/VBoxContainer" node_paths=PackedStringArray("log_display")]
 layout_mode = 2
+placeholder_text = "Command input..."
 caret_blink = true
 caret_blink_interval = 0.1
 script = ExtResource("2_kv87d")

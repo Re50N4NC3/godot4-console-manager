@@ -1,7 +1,6 @@
 extends LineEdit
 class_name Console
 
-
 signal command_executed(command: String, args: Array[String])
 
 # History
@@ -13,6 +12,18 @@ var current_input: String = ""
 # Dictionary to store registered commands
 var commands: Dictionary = {}
 
+# Settings
+@export_category("Console settings")
+@export_range(2, 100, 1) var command_history_limit: int = 40
+@export var print_to_godot_output_terminal: bool = true
+
+@export_group("Text colors")
+@export var text_color_message: Color = Color.WHITE
+@export var text_color_command: Color = Color.YELLOW
+@export var text_color_warning: Color = Color.YELLOW
+@export var text_color_error: Color = Color.RED
+@export var text_color_success: Color = Color.GREEN
+@export var text_color_debug: Color = Color.LIGHT_SKY_BLUE
 
 func _ready() -> void:
 	text_submitted.connect(_on_text_submitted)
@@ -60,29 +71,29 @@ func execute_command(command_str: String) -> void:
 		log_error("Unknown command: '" + command_name + "'")
 
 # Add a message to console logs
-func log_message(message: String, color: Color = Color.WHITE) -> void:
-	if log_display:
-		log_display.append_text("[color=#%s]%s[/color]\n" % [color.to_html(false), message])
+func log_message(message: String, color: Color = text_color_message) -> void:
+	if print_to_godot_output_terminal: print(message)
+	log_display.append_text("[color=#%s]%s[/color]\n" % [color.to_html(false), message])
 
 # Log a command
 func log_command(command: String) -> void:
-	log_message(command, Color.YELLOW)
+	log_message(command, text_color_command)
 
 # Log a warning
 func log_warning(warning: String) -> void:
-	log_message("Warning: " + warning, Color.YELLOW)
+	log_message("Warning: " + warning, text_color_warning)
 
 # Log an error
 func log_error(error: String) -> void:
-	log_message("Error: " + error, Color.RED)
+	log_message("Error: " + error, text_color_error)
 
 # Log a success message
 func log_success(message: String) -> void:
-	log_message(message, Color.GREEN)
+	log_message(message, text_color_success)
 
 # Log a debug message
 func log_debug(message: String) -> void:
-	log_message(message, Color.LIGHT_SKY_BLUE)
+	log_message(message, text_color_debug)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_released():
@@ -116,7 +127,7 @@ func _add_to_history(command: String) -> void:
 	command_history.append(command)
 
 	# Trim history if it gets too long
-	if command_history.size() > 50:
+	if command_history.size() > command_history_limit:
 		command_history.pop_front()
 
 # Navigate command history
