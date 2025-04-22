@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnyex0wf3ydo5"]
+
+[ext_resource type="Script" uid="uid://dkbbq2sygk8ue" path="res://Console/console_ui.gd" id="1_h13bp"]
+[ext_resource type="Script" uid="uid://d1qds34rr1qty" path="res://Console/console.gd" id="2_kv87d"]
+
+[node name="ConsoleUi" type="Control" node_paths=PackedStringArray("console_log", "console_input")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_h13bp")
+console_log = NodePath("PanelContainer/VBoxContainer/ConsoleLog")
+console_input = NodePath("PanelContainer/VBoxContainer/ConsoleInput")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -81.0
+offset_right = 380.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="ConsoleLog" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+scroll_following = true
+autowrap_mode = 0
+
+[node name="ConsoleInput" type="LineEdit" parent="PanelContainer/VBoxContainer" node_paths=PackedStringArray("log_display")]
+layout_mode = 2
+caret_blink = true
+caret_blink_interval = 0.1
+script = ExtResource("2_kv87d")
+log_display = NodePath("../ConsoleLog")
