@@ -6,9 +6,11 @@ Allows to test and execute functions by calling them through registered names. S
 ## Set up
 1. Copy `Console` directory anywhere in your project.
 1. Add `console_manager.gd` as a global singleton and name it `console_manager`.
-1. Attach `Console.tscn` to any scene where you want to have a console, or also spawn it as a singleton to have console available everywhere.
+1. Attach `Console.tscn` to any scene where you want to have a console, or also spawn it as part of other singleton, like main camera, to have console available everywhere.
 
 Shown UI is just an example, scripts are be separated enough to use them on their own with custom made UI setup.
+
+Check out `Examples` folder for use cases and code examlpes. You can also remove it as nothing is dependent on it.
 
 ## ConsoleUi Visual settings
 Here is the list of useful visual properties and how to set them.
