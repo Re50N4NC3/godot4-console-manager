@@ -1,16 +1,20 @@
 # godot4-console-manager
-Self contained console manager with custom commands and UI
+Self contained console manager with custom commands and UI.
+
+Allows to test and execute functions by calling them through registered names. Supports methods with simple arguments.
 
 ## Set up
 1. Copy `Console` directory anywhere in your project.
 1. Add `console_manager.gd` as a global singleton and name it `console_manager`.
-1. Attach `Console.tscn` to your main camera.
-
+1. Attach `Console.tscn` to any scene where you want to have a console, or also spawn it as a singleton to have console available everywhere.
 
 ## ConsoleUi Visual settings
 Here is the list of useful visual properties and how to set them.
 
-### Position
+### ConsoleInput and text color
+From `ConsoleInput` node you can set up visual settings like text colors for specific message types and max history count.
+
+### Anchor Position
 To change position use `Anchors Preset` property inside `PanelContainer`.
 
 ### Content fitting (input box movement on command execution)
