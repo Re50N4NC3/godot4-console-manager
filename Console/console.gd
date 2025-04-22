@@ -12,10 +12,15 @@ var current_input: String = ""
 # Dictionary to store registered commands
 var commands: Dictionary = {}
 
+# Node references
+@export var canvas: CanvasLayer
+
 # Settings
 @export_category("Console settings")
 @export_range(2, 100, 1) var command_history_limit: int = 40
 @export var print_to_godot_output_terminal: bool = true
+@export var console_key: Key = KEY_QUOTELEFT
+@export var initially_visible: bool = true
 
 @export_group("Text colors")
 @export var text_color_message: Color = Color.WHITE
@@ -28,6 +33,8 @@ var commands: Dictionary = {}
 func _ready() -> void:
 	text_submitted.connect(_on_text_submitted)
 	keep_editing_on_text_submit = true  # Required for 4.4
+	if initially_visible:
+		grab_focus()
 
 	# Built-in commands
 	register_command("help", _cmd_help, "Shows all available commands")
@@ -97,14 +104,14 @@ func log_debug(message: String) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_released():
-		if event.keycode == KEY_QUOTELEFT:
-			visible = !visible
-			if visible:
+		if event.keycode == console_key:
+			canvas.set_visible(!canvas.is_visible())
+			if canvas.is_visible():
 				grab_focus()
 			text = ""
 
 		# Command history navigation
-		if visible:
+		if canvas.is_visible():
 			if event.keycode == KEY_UP:
 				_navigate_history(1)
 				get_viewport().set_input_as_handled()
@@ -146,7 +153,6 @@ func _navigate_history(direction: int) -> void:
 	else:
 		# Set text to the historical command
 		text = command_history[command_history.size() - 1 - history_index]
-
 	caret_column = text.length()
 
 # -----------------------------

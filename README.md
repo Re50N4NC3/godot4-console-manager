@@ -8,8 +8,14 @@ Allows to test and execute functions by calling them through registered names. S
 1. Add `console_manager.gd` as a global singleton and name it `console_manager`.
 1. Attach `Console.tscn` to any scene where you want to have a console, or also spawn it as a singleton to have console available everywhere.
 
+Shown UI is just an example, scripts are be separated enough to use them on their own with custom made UI setup.
+
 ## ConsoleUi Visual settings
 Here is the list of useful visual properties and how to set them.
+
+### PanelContainer, sizing and scaling
+`PanelContainer` has minimum sizing, you can change it if needed or resize the panel manually.
+This panel also can be changed to something more fitting like grid container or set its mode to `Fill Horizontal`.
 
 ### ConsoleInput and text color
 From `ConsoleInput` node you can set up visual settings like text colors for specific message types and max history count.
