@@ -1,33 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://bp88ww6srjpxj"]
+[gd_scene load_steps=5 format=3 uid="uid://bp88ww6srjpxj"]
 
-[ext_resource type="Texture2D" uid="uid://gbaoljg4bp3x" path="res://icon.svg" id="1_b7sjk"]
-[ext_resource type="PackedScene" uid="uid://ddes2ejnvqk5q" path="res://Console/Examples/SettingUpCommands/TestCamera.tscn" id="2_nl4ww"]
-[ext_resource type="Script" uid="uid://dptn0xn8lhd0k" path="res://Console/Examples/SettingUpCommands/outside_commands.gd" id="3_7l6ju"]
+[ext_resource type="Texture2D" uid="uid://gbaoljg4bp3x" path="res://icon.svg" id="1_pg80j"]
+[ext_resource type="Script" uid="uid://wfmf3ulbeg3o" path="res://Console/Examples/SettingUpCommands/reference_points.gd" id="1_wxyb6"]
+[ext_resource type="PackedScene" uid="uid://ddes2ejnvqk5q" path="res://Console/Examples/SettingUpCommands/TestCamera.tscn" id="2_wxyb6"]
+[ext_resource type="Script" uid="uid://dptn0xn8lhd0k" path="res://Console/Examples/SettingUpCommands/outside_commands.gd" id="3_iysxf"]
 
 [node name="ConsoleWithCamera" type="Node2D"]
 
-[node name="ReferencePoints" type="Node2D" parent="."]
+[node name="ReferencePoints" type="Node2D" parent="." node_paths=PackedStringArray("references")]
+script = ExtResource("1_wxyb6")
+references = [NodePath("Ref0"), NodePath("Ref1"), NodePath("Ref2"), NodePath("Ref3")]
 
 [node name="Ref0" type="Sprite2D" parent="ReferencePoints"]
 position = Vector2(250, 178)
-texture = ExtResource("1_b7sjk")
+texture = ExtResource("1_pg80j")
 
 [node name="Ref1" type="Sprite2D" parent="ReferencePoints"]
 position = Vector2(512, -303)
-texture = ExtResource("1_b7sjk")
+texture = ExtResource("1_pg80j")
 
 [node name="Ref2" type="Sprite2D" parent="ReferencePoints"]
 position = Vector2(1120, -6)
-texture = ExtResource("1_b7sjk")
+texture = ExtResource("1_pg80j")
 
 [node name="Ref3" type="Sprite2D" parent="ReferencePoints"]
 position = Vector2(1147, -327)
-texture = ExtResource("1_b7sjk")
+texture = ExtResource("1_pg80j")
 
-[node name="TestCamera" parent="." instance=ExtResource("2_nl4ww")]
+[node name="TestCamera" parent="." instance=ExtResource("2_wxyb6")]
 position = Vector2(808, -144)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
 [node name="OutsideCommands" type="Node" parent="."]
-script = ExtResource("3_7l6ju")
+script = ExtResource("3_iysxf")
