@@ -167,8 +167,8 @@ func _cmd_help(args: Array[String]) -> void:
 		var command_name = args[0].to_lower()
 		if commands.has(command_name):
 			var description = commands[command_name]["description"]
-			log_message("Command: ", command_name)
-			log_message("Description: ", description)
+			log_message("Command: " + command_name)
+			log_message("Description: " + description)
 		else:
 			log_error("No help available for unknown command: '" + command_name + "'")
 	else:
