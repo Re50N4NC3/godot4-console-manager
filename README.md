@@ -82,7 +82,7 @@ extends CharacterBody3D
 # Assuming CommandTarget.gd is also attached to this node via the editor
 
 func _ready():
-	# your code
+	# Your other code, for example references to other nodes that contain functions that you want to test.
 	_register_commands() # Call the registration method
 
 # This method is automatically called by CommandTarget if it exists
