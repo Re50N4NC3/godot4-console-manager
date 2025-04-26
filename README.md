@@ -15,9 +15,9 @@ Allows developers to easily register and execute functions via text commands dir
 - Optionally mirrors console output to the Godot editor Output panel.
 
 ## Set up
-1.  Copy the `Console` directory (containing `Console.tscn`, `Console.gd`, `ConsoleManager.gd`, and `CommandTarget.gd`) anywhere into your Godot project's filesystem (e.g., `res://addons/console/`).
-2.  Go to `Project -> Project Settings -> AutoLoad`.
-3.  Click the folder icon next to "Path" and select the `ConsoleManager.gd` script.
+1.  Copy the `Console` directory (containing `Console.tscn`, `console.gd`, `console_manager.gd`, and `command_target.gd`) anywhere into your Godot project's filesystem (e.g., `res://addons/console/`).
+2.  Go to `Project -> Project Settings -> Globals -> AutoLoad`.
+3.  Click the folder icon next to "Path" and select the `console_manager.gd` script.
 4.  Enter `console_manager` in the "Node Name" field. Click "Add".
 5.  Add the `Console.tscn` scene as an instance to your main game scene, or another persistent scene (like a UI manager or attached to your main camera).
 
