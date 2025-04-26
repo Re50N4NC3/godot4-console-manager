@@ -71,15 +71,15 @@ Access command history with Up and Down Arrow Keys.
 ## Registering Custom Commands
 You can add your own commands in two main ways:
 
-**1. Using `CommandTarget` Component:**
-- Attach the `CommandTarget.gd` script to any Node in your scene.
+**1. Using `command_target` Component:**
+- Attach the `command_target.gd` script to any Node in your scene.
 - Create a new script that extends the node's original script or `CommandTarget` itself. Override the `_register_commands` virtual function.
 - Use the `register_command` helper within `_register_commands`.
 
 ```gdscript
 # In your node's script (e.g., Player.gd) that also has CommandTarget.gd attached or extends a script that does.
+# Assuming command_target.gd is also attached to this node via the editor
 extends CharacterBody3D
-# Assuming CommandTarget.gd is also attached to this node via the editor
 
 func _ready():
 	# Your other code, for example references to other nodes that contain functions that you want to test.
@@ -88,12 +88,14 @@ func _ready():
 # This method is automatically called by CommandTarget if it exists
 func _register_commands() -> void:
 	# The callback function MUST EXIST IN THIS script instance.
-	register_command("player_pos", Callable(self, "_cmd_get_position"), "Prints the player's current position.")
-	register_command("heal", Callable(self, "_cmd_heal_player"), "Heals the player. Usage: heal <amount>")
+	# Remember that registering uses callable and not function reference, so you don't have to put `()` after the function name.
+	register_command("player_pos", _cmd_get_position, "Prints the player's current position.")
+	register_command("heal", _cmd_heal_player, "Heals the player. Usage: heal <amount>")
 
 func _cmd_get_position(args: Array[String]) -> void:
-	# Callbacks might take 0 or N args.
-	# This example assumes it always receives args that have to be strings.
+	# Callbacks might take 0 or N args. This example doesn't take any as it uses built in global_position.
+	# It always receives args that will be strings.
+	# You have to cast each positional argument to a desired type.
 	ConsoleManager.log_message("Player Position: " + str(global_position))
 
 func _cmd_heal_player(args: Array[String]) -> void:
