@@ -48,7 +48,7 @@ To change position use `Anchors Preset` property inside `PanelContainer`.
 ### Content fitting (input box movement on command execution)
 When changing anchor position to top there are two options to keep input box in place:
 	1. Disable content fitting inside `ConsoleLog`, `Fit Content = false`, it will cause logs to always stay the same size.
-	1. Move `ConsoleInput` in hierarchy tree above the `ConsoleLog`, it will cause logs to expand downwards.
+	1. Move `ConsoleInput` in hierarchy tree above the `ConsoleLog`, it will cause logs to expand downwards and will put console input at the top.
 
 ## Usage
 ### Opening/Closing the Console
